@@ -4,7 +4,7 @@ import com.github.godmoonlight.attastyle.services.MyApplicationService
 
 object ConfigUtil {
 
-    fun get():AttaSettingConfig{
+    fun get(): AttaSettingConfig {
         return MyApplicationService.getInstance().config
     }
 }

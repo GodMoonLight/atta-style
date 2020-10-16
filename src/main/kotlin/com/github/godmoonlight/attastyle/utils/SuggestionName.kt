@@ -2,7 +2,6 @@ package com.github.godmoonlight.attastyle.utils
 
 import com.intellij.psi.PsiClass
 
-
 object SuggestionName {
 
     operator fun get(psiClass: PsiClass): String? {

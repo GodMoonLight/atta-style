@@ -1,6 +1,5 @@
 package com.github.godmoonlight.attastyle.utils
 
-
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.actionSystem.PlatformDataKeys
@@ -12,7 +11,6 @@ import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings.IndentOptions.retrieveFromAssociatedDocument
 import com.intellij.psi.util.PsiTreeUtil
 import org.jetbrains.annotations.Nullable
-
 
 object ProjectUtil {
     fun getProjectIndentation(psiClass: PsiClass): String? {

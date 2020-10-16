@@ -31,22 +31,14 @@ class JsonConverter : AnAction() {
 
         val selectedClass: PsiClass =
             PsiTreeUtil.getContextOfType<PsiElement>(referenceAt, PsiClass::class.java) as PsiClass
-        try {
-            val kv: KV<String, Any> = getFields(selectedClass)
-            val json: String = kv.toPrettyJson()
-            val selection = StringSelection(json)
-            val clipboard = Toolkit.getDefaultToolkit().systemClipboard
-            clipboard.setContents(selection, selection)
-            val message = "Convert " + selectedClass.name + " to JSON success, copied to clipboard."
-            val success =
-                notificationGroup.createNotification(message, NotificationType.INFORMATION)
-            Notifications.Bus.notify(success, project)
-        } catch (ex: Exception) {
-            val error = notificationGroup.createNotification(
-                "Convert to JSON failed.",
-                NotificationType.ERROR
-            )
-            Notifications.Bus.notify(error, project)
-        }
+
+        val kv: KV<String, Any> = getFields(selectedClass)
+        val json: String = kv.toPrettyJson()
+        val selection = StringSelection(json)
+        val clipboard = Toolkit.getDefaultToolkit().systemClipboard
+        clipboard.setContents(selection, selection)
+        val message = "Convert " + selectedClass.name + " to JSON success, copied to clipboard."
+        val success = notificationGroup.createNotification(message, NotificationType.INFORMATION)
+        Notifications.Bus.notify(success, project)
     }
 }

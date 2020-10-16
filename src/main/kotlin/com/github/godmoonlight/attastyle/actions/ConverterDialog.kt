@@ -13,21 +13,20 @@ import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.ui.TextFieldWithAutoCompletion
 import java.awt.Dimension
 import java.awt.GridLayout
-import java.util.stream.Collectors
-import java.util.stream.Stream
 import javax.swing.JCheckBox
 import javax.swing.JComponent
 import javax.swing.JPanel
 
-
-class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean) : DialogWrapper(psiClass.project) {
+class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean) :
+    DialogWrapper(psiClass.project) {
     private val dialog: JPanel
     private var toField: TextFieldWithAutoCompletion<String>? = null
     private var fromField: TextFieldWithAutoCompletion<String>? = null
     private val inheritFields: JCheckBox
+
     override fun doValidate(): ValidationInfo? {
-        return validateTextField(toField, "Target")
-                ?: return validateTextField(fromField, "From")
+        return toField?.let { validateTextField(it, "Target") }
+            ?: return fromField?.let { validateTextField(it, "From") }
     }
 
     override fun createCenterPanel(): JComponent? {
@@ -41,21 +40,18 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
         return jPanel
     }
 
-    private val classNamesForAutocompletion: List<String>
-        get() {
-            val history = Stream.of(*EditorHistoryManager.getInstance(psiClass.project).files)
-                    .map { obj: VirtualFile -> obj.nameWithoutExtension }
-                    .distinct()
-                    .collect(Collectors.toList())
+    private fun classNamesForAutocompletion(): List<String> {
+        val history = EditorHistoryManager.getInstance(psiClass.project).files
+            .map { obj: VirtualFile -> obj.nameWithoutExtension }
+            .distinct()
 
-
-
-            val projectFiles = FileTypeIndex.getFiles(JavaFileType.INSTANCE, GlobalSearchScope.allScope(psiClass.project)).stream()
-                    .map { obj: VirtualFile -> obj.nameWithoutExtension }
-                    .collect(Collectors.toList())
-            history.addAll(projectFiles)
-            return history
-        }
+        val projectFiles = FileTypeIndex.getFiles(
+            JavaFileType.INSTANCE,
+            GlobalSearchScope.allScope(psiClass.project)
+        ).map { obj: VirtualFile -> obj.nameWithoutExtension }
+        history.plus(projectFiles)
+        return history
+    }
 
     private fun createTextField(classNames: List<String>): TextFieldWithAutoCompletion<String> {
         val textField = TextFieldWithAutoCompletion.create(psiClass.project, classNames, true, null)
@@ -76,22 +72,27 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
     private fun extractPsiClass(textField: TextFieldWithAutoCompletion<String>?): PsiClass {
         val className = textField!!.text
         require(!className.isEmpty()) { "Should select smth" }
-        val resolvedClasses = PsiShortNamesCache.getInstance(psiClass.project).getClassesByName(className, GlobalSearchScope.projectScope(psiClass.project))
+        val resolvedClasses = PsiShortNamesCache.getInstance(psiClass.project)
+            .getClassesByName(className, GlobalSearchScope.projectScope(psiClass.project))
         require(resolvedClasses.size != 0) { "No such class found: $className" }
         return resolvedClasses[0]
     }
 
-    private fun validateTextField(textField: TextFieldWithAutoCompletion<String>?, fieldName: String): ValidationInfo? {
-        if (textField == null) {
-            return null
-        }
+    private fun validateTextField(
+        textField: TextFieldWithAutoCompletion<String>,
+        fieldName: String
+    ): ValidationInfo? {
         val className = textField.text
         if (className.isEmpty()) {
-            return ValidationInfo(String.format("%s class should be selected", fieldName), textField)
+            return ValidationInfo(
+                String.format("%s class should be selected", fieldName),
+                textField
+            )
         }
-        val resolvedClasses = PsiShortNamesCache.getInstance(psiClass.project).getClassesByName(className, GlobalSearchScope.projectScope(psiClass.project))
-        return if (resolvedClasses.size == 0) {
-            ValidationInfo(String.format("Failed to find a class %s in the current project", className), textField)
+        val resolvedClasses = PsiShortNamesCache.getInstance(psiClass.project)
+            .getClassesByName(className, GlobalSearchScope.projectScope(psiClass.project))
+        return if (resolvedClasses.isEmpty()) {
+            ValidationInfo("Failed to find a class $className in the current project", textField)
         } else null
     }
 
@@ -102,16 +103,22 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
 
     init {
         dialog = createConverterDialog()
-        val classNamesForAutocompletion = classNamesForAutocompletion
+        val classNamesForAutocompletion = classNamesForAutocompletion()
         inheritFields = JCheckBox("Use inherited fields")
         if (from) {
             fromField = createTextField(classNamesForAutocompletion)
-            val convertFromComponent = LabeledComponent.create<TextFieldWithAutoCompletion<*>?>(fromField!!, "Convert From class")
+            val convertFromComponent = LabeledComponent.create<TextFieldWithAutoCompletion<*>?>(
+                fromField!!,
+                "Convert From class"
+            )
             dialog.add(convertFromComponent)
         }
         if (to) {
             toField = createTextField(classNamesForAutocompletion)
-            val convertToComponent = LabeledComponent.create<TextFieldWithAutoCompletion<*>?>(toField!!, "Convert To class")
+            val convertToComponent = LabeledComponent.create<TextFieldWithAutoCompletion<*>?>(
+                toField!!,
+                "Convert To class"
+            )
             dialog.add(convertToComponent)
         }
         dialog.add(inheritFields)

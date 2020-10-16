@@ -1,4 +1,3 @@
-// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 package com.github.godmoonlight.attastyle.settings
 
 import com.intellij.ui.components.JBCheckBox
@@ -39,11 +38,9 @@ class AppSettingsComponent {
             randomValue = value.toJsonConfig.randomValue
         }
 
-
     init {
         panel = FormBuilder.createFormBuilder()
             .addLabeledComponent("To Json", JSeparator())
-//            .addLabeledComponent(JBLabel("Enter user name: "), myUserNameText, 1, false)
             .addComponent(toJsonComment, 1)
             .addComponent(toJsonRandom, 1)
             .addComponentFillVertically(JPanel(), 0)

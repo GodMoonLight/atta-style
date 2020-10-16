@@ -27,12 +27,11 @@ class MyApplicationService : PersistentStateComponent<MyApplicationService> {
         }
     }
 
-
     override fun getState(): MyApplicationService {
         return this
     }
 
     override fun loadState(state: MyApplicationService) {
-        XmlSerializerUtil.copyBean(state, this);
+        XmlSerializerUtil.copyBean(state, this)
     }
 }

@@ -38,14 +38,14 @@ class GenerateConverterMethod(private val mapResult: ClassMapResult) : GenerateM
     private fun writeMappedFields(): String {
         val builder = StringBuilder()
 
-        for (field in mapResult.getMappedFields()) {
+        for (field in mapResult.mappedFields) {
             builder.append(toName).append(".")
                 .append(field.value.second.name)
                 .append("(").append(fromName).append(".")
                 .append(field.value.first.name)
                 .append("());\n")
         }
-        for (field in mapResult.getMappedConvertibleFields()) {
+        for (field in mapResult.mappedConvertibleFields) {
             if (field.value.first.returnType is PsiPrimitiveType) {
                 builder.append(toName).append(".")
                     .append(field.value.second.name)
