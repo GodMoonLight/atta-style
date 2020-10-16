@@ -34,15 +34,15 @@ version = pluginVersion
 
 // Configure project's dependencies
 repositories {
-    maven {
-        url = uri("https://maven.aliyun.com/repository/jcenter/")
-    }
-    maven {
-        url = uri("https://maven.aliyun.com/repository/gradle-plugin/")
-    }
-    maven {
-        url = uri("https://maven.aliyun.com/nexus/content/groups/public/")
-    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/repository/jcenter/")
+//    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/repository/gradle-plugin/")
+//    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/nexus/content/groups/public/")
+//    }
     mavenCentral()
     jcenter()
 }
@@ -107,7 +107,11 @@ tasks {
                     val end = "<!-- Plugin description end -->"
 
                     if (!containsAll(listOf(start, end))) {
-                        throw GradleException("Plugin description section not found in README.md file:\n$start ... $end")
+                        val msg = """
+                            Plugin description section not found in README.md file:
+                            $start ... $end
+                            """
+                        throw GradleException(msg)
                     }
                     subList(indexOf(start) + 1, indexOf(end))
                 }.joinToString("\n").run { markdownToHTML(this) }
