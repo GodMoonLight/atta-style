@@ -6,8 +6,8 @@
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Verify the [pluginGroup](/gradle.properties), [plugin ID](/src/main/resources/META-INF/plugin.xml) and [sources package](/src/main/kotlin).
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html).
+- [x] Verify the [pluginGroup](/gradle.properties), [plugin ID](/src/main/resources/META-INF/plugin.xml) and [sources package](/src/main/kotlin).
+- [x] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html).
 - [ ] [Publish a plugin manually](https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html) for the first time.
 - [ ] Set the Plugin ID in the above README badges.
 - [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html).
@@ -20,6 +20,12 @@ This specific section is a source for the [plugin.xml](/src/main/resources/META-
 extracted by the [Gradle](/build.gradle.kts) during the build process.
 
 To keep everything working, do not remove `<!-- ... -->` sections. 
+
+There are some tools:
+ 1. beanConverter: convert a bean to another
+ 2. toJson: convert bean to json
+ 3. toYaml: convert bean to yaml
+ 
 <!-- Plugin description end -->
 
 ## Installation

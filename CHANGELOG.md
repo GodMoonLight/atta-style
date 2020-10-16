@@ -2,6 +2,8 @@
 
 # atta-style Changelog
 
-## [Unreleased]
+## [1.0.0] - 2020-10-20
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+-  beanConverter: convert a bean to another
+-  toJson: convert bean to json
+-  toYaml: convert bean to yaml

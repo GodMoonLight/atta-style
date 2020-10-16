@@ -38,11 +38,5 @@
           description="Java bean convert to json">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
-
-<!--        <group id="Java2JsonMenu" text="Java2Json" popup="true">-->
-<!--            <add-to-group group-id="ToolsMenu" anchor="last"/>-->
-<!--            <action class="com.linsage.menu.ToggleCommentAction" id="menu_comment" text="Toggle Comment" icon="AllIcons.Actions.Checked"  />-->
-<!--            <action class="com.linsage.menu.SponsorAction" id="menu_sponsor" text="Sponsor me" />-->
-<!--        </group>-->
     </actions>
 </idea-plugin>
