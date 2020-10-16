@@ -108,7 +108,8 @@ tasks {
                     val end = "<!-- Plugin description end -->"
 
                     if (!containsAll(listOf(start, end))) {
-                        val msg = """
+                        val msg =
+                            """
                             Plugin description section not found in README.md file:
                             $start ... $end
                             """
