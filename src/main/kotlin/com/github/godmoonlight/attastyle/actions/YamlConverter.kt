@@ -31,7 +31,7 @@ class YamlConverter : AnAction() {
 
         val selectedClass: PsiClass =
             PsiTreeUtil.getContextOfType<PsiElement>(referenceAt, PsiClass::class.java) as PsiClass
-        val kv: KV<String, Any> = FieldResolver.getFields(selectedClass)
+        val kv: KV<String, Any> = FieldResolver().getFields(selectedClass)
         val json: String = kv.toYaml(selectedClass.qualifiedName)
         val selection = StringSelection(json)
         val clipboard = Toolkit.getDefaultToolkit().systemClipboard

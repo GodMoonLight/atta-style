@@ -19,9 +19,9 @@ import java.util.Date
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-object FieldResolver {
+class FieldResolver {
 
-    private const val pattern = "yyyy-MM-dd HH:mm:ss"
+    private val pattern = "yyyy-MM-dd HH:mm:ss"
     private val df: DateFormat = SimpleDateFormat(pattern)
     private var isShowComment: Boolean = ConfigUtil.get().toJsonConfig.comment
     var isRandom: Boolean = ConfigUtil.get().toJsonConfig.randomValue

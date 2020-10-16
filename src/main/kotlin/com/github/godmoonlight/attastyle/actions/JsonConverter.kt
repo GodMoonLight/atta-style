@@ -1,6 +1,5 @@
 package com.github.godmoonlight.attastyle.actions
 
-import com.github.godmoonlight.attastyle.actions.FieldResolver.getFields
 import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationGroup
 import com.intellij.notification.NotificationType
@@ -32,7 +31,7 @@ class JsonConverter : AnAction() {
         val selectedClass: PsiClass =
             PsiTreeUtil.getContextOfType<PsiElement>(referenceAt, PsiClass::class.java) as PsiClass
 
-        val kv: KV<String, Any> = getFields(selectedClass)
+        val kv: KV<String, Any> = FieldResolver().getFields(selectedClass)
         val json: String = kv.toPrettyJson()
         val selection = StringSelection(json)
         val clipboard = Toolkit.getDefaultToolkit().systemClipboard
