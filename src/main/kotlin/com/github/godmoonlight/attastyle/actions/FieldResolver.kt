@@ -23,7 +23,7 @@ object FieldResolver {
 
     private const val pattern = "yyyy-MM-dd HH:mm:ss"
     private val df: DateFormat = SimpleDateFormat(pattern)
-    var isShowComment: Boolean = ConfigUtil.get().toJsonConfig.comment
+    private var isShowComment: Boolean = ConfigUtil.get().toJsonConfig.comment
     var isRandom: Boolean = ConfigUtil.get().toJsonConfig.randomValue
 
     @NonNls
@@ -69,8 +69,8 @@ object FieldResolver {
                         // enum
                         kv[name] = peocesEnum(type)
                     }
+                    // class_type
                     else -> {
-                        // class type
                         kv[name] = getFields(PsiUtil.resolveClassInType(type))
                     }
                 }
@@ -100,7 +100,7 @@ object FieldResolver {
     }
 
     private fun processArrayList(type: @NotNull PsiType): ArrayList<Any> {
-        val deepType = type.getDeepComponentType()
+        val deepType = type.deepComponentType
         val list = ArrayList<Any>()
         val deepTypeName = deepType.presentableText
         when {
