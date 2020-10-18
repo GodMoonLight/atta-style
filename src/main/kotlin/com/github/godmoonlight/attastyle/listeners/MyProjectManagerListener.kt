@@ -1,8 +1,8 @@
 package com.github.godmoonlight.attastyle.listeners
 
+import com.github.godmoonlight.attastyle.services.MyProjectService
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.github.godmoonlight.attastyle.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

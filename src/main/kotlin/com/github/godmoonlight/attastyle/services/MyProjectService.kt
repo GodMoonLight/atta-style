@@ -1,7 +1,7 @@
 package com.github.godmoonlight.attastyle.services
 
-import com.intellij.openapi.project.Project
 import com.github.godmoonlight.attastyle.MyBundle
+import com.intellij.openapi.project.Project
 
 class MyProjectService(project: Project) {
 
