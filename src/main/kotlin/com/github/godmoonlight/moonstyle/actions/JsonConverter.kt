@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.actions
+package com.github.godmoonlight.moonstyle.actions
 
 import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationGroup
@@ -13,11 +13,10 @@ import com.intellij.psi.util.PsiTreeUtil
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 
-class YamlConverter : AnAction() {
-
+class JsonConverter : AnAction() {
     companion object {
         private var notificationGroup: NotificationGroup = NotificationGroup(
-            "Java2Yaml.NotificationGroup",
+            "Java2Json.NotificationGroup",
             NotificationDisplayType.BALLOON,
             true
         )
@@ -31,12 +30,13 @@ class YamlConverter : AnAction() {
 
         val selectedClass: PsiClass =
             PsiTreeUtil.getContextOfType<PsiElement>(referenceAt, PsiClass::class.java) as PsiClass
+
         val kv: KV<String, Any> = FieldResolver().getFields(selectedClass)
-        val json: String = kv.toYaml(selectedClass.qualifiedName)
+        val json: String = kv.toPrettyJson()
         val selection = StringSelection(json)
         val clipboard = Toolkit.getDefaultToolkit().systemClipboard
         clipboard.setContents(selection, selection)
-        val message = "Convert " + selectedClass.name + " to Yaml success, copied to clipboard."
+        val message = "Convert " + selectedClass.name + " to JSON success, copied to clipboard."
         val success = notificationGroup.createNotification(message, NotificationType.INFORMATION)
         Notifications.Bus.notify(success, project)
     }

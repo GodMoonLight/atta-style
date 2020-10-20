@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.utils
+package com.github.godmoonlight.moonstyle.utils
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.LangDataKeys

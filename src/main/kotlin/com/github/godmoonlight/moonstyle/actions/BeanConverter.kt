@@ -1,9 +1,9 @@
-package com.github.godmoonlight.attastyle.actions
+package com.github.godmoonlight.moonstyle.actions
 
-import com.github.godmoonlight.attastyle.utils.ClassMapResult
-import com.github.godmoonlight.attastyle.utils.GenerateConverterMethod
-import com.github.godmoonlight.attastyle.utils.GenerateMethod
-import com.github.godmoonlight.attastyle.utils.ProjectUtil
+import com.github.godmoonlight.moonstyle.utils.ClassMapResult
+import com.github.godmoonlight.moonstyle.utils.GenerateConverterMethod
+import com.github.godmoonlight.moonstyle.utils.GenerateMethod
+import com.github.godmoonlight.moonstyle.utils.ProjectUtil
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction

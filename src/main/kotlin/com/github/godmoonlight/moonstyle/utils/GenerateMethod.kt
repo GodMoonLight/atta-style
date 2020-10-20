@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.utils
+package com.github.godmoonlight.moonstyle.utils
 
 interface GenerateMethod {
     fun generate(): String

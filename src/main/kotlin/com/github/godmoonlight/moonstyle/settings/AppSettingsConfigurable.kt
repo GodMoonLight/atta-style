@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.settings
+package com.github.godmoonlight.moonstyle.settings
 
 import com.intellij.openapi.options.Configurable
 import com.intellij.util.xmlb.XmlSerializerUtil

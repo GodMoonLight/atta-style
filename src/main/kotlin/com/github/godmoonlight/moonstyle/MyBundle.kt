@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle
+package com.github.godmoonlight.moonstyle
 
 import com.intellij.AbstractBundle
 import org.jetbrains.annotations.NonNls

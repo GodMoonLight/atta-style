@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.settings
+package com.github.godmoonlight.moonstyle.settings
 
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBTextField

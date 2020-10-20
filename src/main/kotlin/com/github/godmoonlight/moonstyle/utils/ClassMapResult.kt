@@ -1,6 +1,6 @@
-package com.github.godmoonlight.attastyle.utils
+package com.github.godmoonlight.moonstyle.utils
 
-import com.github.godmoonlight.attastyle.utils.ProjectUtil.getProjectIndentation
+import com.github.godmoonlight.moonstyle.utils.ProjectUtil.getProjectIndentation
 import com.intellij.lang.jvm.JvmModifier
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField

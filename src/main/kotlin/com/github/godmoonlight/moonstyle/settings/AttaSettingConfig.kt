@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.settings
+package com.github.godmoonlight.moonstyle.settings
 
 data class ToJsonConfig(var comment: Boolean = false, var randomValue: Boolean = false)
 data class ToYamlConfig(var randomValue: Boolean = false)

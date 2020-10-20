@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.actions
+package com.github.godmoonlight.moonstyle.actions
 
 import com.google.gson.GsonBuilder
 import org.yaml.snakeyaml.DumperOptions

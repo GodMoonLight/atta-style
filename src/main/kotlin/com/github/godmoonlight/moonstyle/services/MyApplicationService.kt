@@ -1,8 +1,8 @@
-package com.github.godmoonlight.attastyle.services
+package com.github.godmoonlight.moonstyle.services
 
-import com.github.godmoonlight.attastyle.MyBundle
-import com.github.godmoonlight.attastyle.settings.AttaSettingConfig
-import com.github.godmoonlight.attastyle.settings.ToJsonConfig
+import com.github.godmoonlight.moonstyle.MyBundle
+import com.github.godmoonlight.moonstyle.settings.AttaSettingConfig
+import com.github.godmoonlight.moonstyle.settings.ToJsonConfig
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.components.State

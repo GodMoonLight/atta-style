@@ -1,6 +1,6 @@
-package com.github.godmoonlight.attastyle.settings
+package com.github.godmoonlight.moonstyle.settings
 
-import com.github.godmoonlight.attastyle.services.MyApplicationService
+import com.github.godmoonlight.moonstyle.services.MyApplicationService
 
 object ConfigUtil {
 

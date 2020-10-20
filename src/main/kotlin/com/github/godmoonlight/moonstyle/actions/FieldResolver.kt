@@ -1,6 +1,6 @@
-package com.github.godmoonlight.attastyle.actions
+package com.github.godmoonlight.moonstyle.actions
 
-import com.github.godmoonlight.attastyle.settings.ConfigUtil
+import com.github.godmoonlight.moonstyle.settings.ConfigUtil
 import com.intellij.psi.PsiArrayType
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiEnumConstant

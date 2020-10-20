@@ -1,4 +1,4 @@
-package com.github.godmoonlight.attastyle.actions
+package com.github.godmoonlight.moonstyle.actions
 
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.openapi.fileEditor.impl.EditorHistoryManager
