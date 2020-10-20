@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# atta-style Changelog
+# moon-style Changelog
 ## [Unreleased]
 
 ## [1.0.0] - 2020-10-20
