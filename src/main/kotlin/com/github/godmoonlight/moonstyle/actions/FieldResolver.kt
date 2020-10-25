@@ -82,16 +82,19 @@ class FieldResolver(
     }
 
     private fun processEnum(type: @NotNull PsiType): Any {
-        if (isRandom) {
-            return PsiUtil.resolveClassInClassTypeOnly(type)!!
-                .fields.filterIsInstance<PsiEnumConstant>().parallelStream().findAny().get().name
-        }
-        if (enumvalues) {
-            return PsiUtil.resolveClassInClassTypeOnly(type)!!
-                .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
+        return when {
+            isRandom -> {
+                PsiUtil.resolveClassInClassTypeOnly(type)!!
+                    .fields.filterIsInstance<PsiEnumConstant>().parallelStream()
+                    .findAny().get().name
+            }
+            enumvalues -> {
+                PsiUtil.resolveClassInClassTypeOnly(type)!!
+                    .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
+            }
+            else -> ""
         }
 
-        return ""
     }
 
     private fun processList(type: @NotNull PsiType): ArrayList<Any> {

@@ -10,7 +10,6 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings.IndentOptions.retrieveFromAssociatedDocument
 import com.intellij.psi.util.PsiTreeUtil
-import org.jetbrains.annotations.Nullable
 
 object ProjectUtil {
     fun getProjectIndentation(psiClass: PsiClass): String? {

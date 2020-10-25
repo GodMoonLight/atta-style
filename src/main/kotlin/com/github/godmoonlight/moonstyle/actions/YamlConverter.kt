@@ -1,7 +1,6 @@
 package com.github.godmoonlight.moonstyle.actions
 
 import com.github.godmoonlight.moonstyle.settings.ConfigUtil
-import com.github.godmoonlight.moonstyle.settings.ToJsonConfig
 import com.github.godmoonlight.moonstyle.settings.ToYamlConfig
 import com.github.godmoonlight.moonstyle.utils.ProjectUtil
 import com.intellij.notification.NotificationDisplayType
