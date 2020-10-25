@@ -1,7 +1,7 @@
 package com.github.godmoonlight.moonstyle.services
 
 import com.github.godmoonlight.moonstyle.MyBundle
-import com.github.godmoonlight.moonstyle.settings.AttaSettingConfig
+import com.github.godmoonlight.moonstyle.settings.MoonSettingConfig
 import com.github.godmoonlight.moonstyle.settings.ToJsonConfig
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.ServiceManager
@@ -10,8 +10,8 @@ import com.intellij.openapi.components.Storage
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 @State(
-    name = "com.github.godmoonlight.attastyle.services.MyApplicationService",
-    storages = [Storage("Atta-SettingsPlugin.xml")]
+    name = "com.github.godmoonlight.moonstyle.services.MyApplicationService",
+    storages = [Storage("Moon-SettingsPlugin.xml")]
 )
 class MyApplicationService : PersistentStateComponent<MyApplicationService> {
 
@@ -19,7 +19,7 @@ class MyApplicationService : PersistentStateComponent<MyApplicationService> {
         println(MyBundle.message("applicationService"))
     }
 
-    var config: AttaSettingConfig = AttaSettingConfig(ToJsonConfig())
+    var config: MoonSettingConfig = MoonSettingConfig(ToJsonConfig())
 
     companion object {
         fun getInstance(): MyApplicationService {

@@ -24,13 +24,13 @@ object ProjectUtil {
     }
 
     fun getPsiClassFromContext(e: AnActionEvent): PsiClass? {
-        val psiFile: @Nullable PsiFile? = e.getData(LangDataKeys.PSI_FILE)
-        val editor: @Nullable Editor? = e.getData(PlatformDataKeys.EDITOR)
+        val psiFile: PsiFile? = e.getData(LangDataKeys.PSI_FILE)!!
+        val editor: Editor? = e.getData(PlatformDataKeys.EDITOR)!!
         if (psiFile == null || editor == null) {
             return null
         }
         val offset: Int = editor.caretModel.offset
-        val elementAt: @Nullable PsiElement? = psiFile.findElementAt(offset)
+        val elementAt: PsiElement? = psiFile.findElementAt(offset)
         return PsiTreeUtil.getParentOfType(elementAt, PsiClass::class.java)
     }
 }

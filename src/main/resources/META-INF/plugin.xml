@@ -11,11 +11,11 @@
         <applicationService serviceImplementation="com.github.godmoonlight.moonstyle.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.godmoonlight.moonstyle.services.MyProjectService"/>
         <applicationConfigurable
-          id="attaStyleSetting"
+          id="moonStyleSetting"
           bundle="messages.MyBundle"
           parentId="tools"
           instance="com.github.godmoonlight.moonstyle.settings.AppSettingsConfigurable"
-          displayName="Atta Style"/>
+          displayName="Moon Style"/>
     </extensions>
 
     <projectListeners>

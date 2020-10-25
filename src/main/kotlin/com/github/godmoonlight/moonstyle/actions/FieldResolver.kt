@@ -1,6 +1,5 @@
 package com.github.godmoonlight.moonstyle.actions
 
-import com.github.godmoonlight.moonstyle.settings.ConfigUtil
 import com.intellij.psi.PsiArrayType
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiEnumConstant
@@ -8,7 +7,6 @@ import com.intellij.psi.PsiPrimitiveType
 import com.intellij.psi.PsiType
 import com.intellij.psi.util.PsiTypesUtil
 import com.intellij.psi.util.PsiUtil
-import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.NotNull
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -19,15 +17,16 @@ import java.util.Date
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class FieldResolver {
+class FieldResolver(
+    private var isShowComment: Boolean,
+    private var isRandom: Boolean,
+    private var enumvalues: Boolean
+) {
 
-    private val pattern = "yyyy-MM-dd HH:mm:ss"
-    private val df: DateFormat = SimpleDateFormat(pattern)
-    private var isShowComment: Boolean = ConfigUtil.get().toJsonConfig.comment
-    var isRandom: Boolean = ConfigUtil.get().toJsonConfig.randomValue
+    private val df: DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
-    @NonNls
     private val normalTypes: MutableMap<String, Any> = HashMap()
+
     private fun isNormalType(typeName: String): Boolean {
         return normalTypes.containsKey(typeName)
     }
@@ -67,7 +66,7 @@ class FieldResolver {
                     }
                     PsiUtil.resolveClassInClassTypeOnly(type)!!.isEnum -> {
                         // enum
-                        kv[name] = peocesEnum(type)
+                        kv[name] = processEnum(type)
                     }
                     // class_type
                     else -> {
@@ -82,9 +81,18 @@ class FieldResolver {
         return kv
     }
 
-    private fun peocesEnum(type: @NotNull PsiType) =
-        PsiUtil.resolveClassInClassTypeOnly(type)!!
-            .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
+    private fun processEnum(type: @NotNull PsiType): Any {
+        if (isRandom) {
+            return PsiUtil.resolveClassInClassTypeOnly(type)!!
+                .fields.filterIsInstance<PsiEnumConstant>().parallelStream().findAny().get().name
+        }
+        if (enumvalues) {
+            return PsiUtil.resolveClassInClassTypeOnly(type)!!
+                .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
+        }
+
+        return ""
+    }
 
     private fun processList(type: @NotNull PsiType): ArrayList<Any> {
         val iterableType = PsiUtil.extractIterableTypeParameter(type, false)

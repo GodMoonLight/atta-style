@@ -1,7 +1,6 @@
 package com.github.godmoonlight.moonstyle.settings
 
 import com.intellij.ui.components.JBCheckBox
-import com.intellij.ui.components.JBTextField
 import com.intellij.util.ui.FormBuilder
 import javax.swing.JComponent
 import javax.swing.JPanel
@@ -12,9 +11,11 @@ import javax.swing.JSeparator
  */
 class AppSettingsComponent {
     val panel: JPanel
-    private val myUserNameText = JBTextField()
-    private val toJsonRandom = JBCheckBox("Use Random Value")
+    private val toJsonRandom = JBCheckBox("Use random value")
     private val toJsonComment = JBCheckBox("Show comment")
+    private val toJsonEnum = JBCheckBox("Show comment")
+    private val toYamlEnum = JBCheckBox("Use random value")
+    private val toYamlRandomValue = JBCheckBox("Show All Enum values")
 
     val preferredFocusedComponent: JComponent
         get() = toJsonRandom
@@ -29,9 +30,9 @@ class AppSettingsComponent {
             toJsonRandom.isSelected = newStatus
         }
 
-    var attaSettingConfig: AttaSettingConfig
+    var moonSettingConfig: MoonSettingConfig
         get() {
-            return AttaSettingConfig(ToJsonConfig(comment, randomValue))
+            return MoonSettingConfig(ToJsonConfig(comment, randomValue))
         }
         set(value) {
             comment = value.toJsonConfig.comment
@@ -43,6 +44,12 @@ class AppSettingsComponent {
             .addLabeledComponent("To Json", JSeparator())
             .addComponent(toJsonComment, 1)
             .addComponent(toJsonRandom, 1)
+            .addComponent(toJsonEnum, 1)
+            .addSeparator()
+            .addLabeledComponent("To Yaml", JSeparator())
+            .addComponent(toYamlEnum, 1)
+            .addComponent(toYamlRandomValue, 1)
+            .addSeparator()
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }

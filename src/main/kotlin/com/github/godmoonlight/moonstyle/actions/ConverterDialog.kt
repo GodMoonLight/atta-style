@@ -71,10 +71,10 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
 
     private fun extractPsiClass(textField: TextFieldWithAutoCompletion<String>?): PsiClass {
         val className = textField!!.text
-        require(!className.isEmpty()) { "Should select smth" }
+        require(className.isNotBlank()) { "Should select class" }
         val resolvedClasses = PsiShortNamesCache.getInstance(psiClass.project)
             .getClassesByName(className, GlobalSearchScope.projectScope(psiClass.project))
-        require(resolvedClasses.size != 0) { "No such class found: $className" }
+        require(resolvedClasses.isNotEmpty()) { "No such class found: $className" }
         return resolvedClasses[0]
     }
 

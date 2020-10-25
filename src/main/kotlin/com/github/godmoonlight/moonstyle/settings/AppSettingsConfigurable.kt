@@ -14,7 +14,7 @@ class AppSettingsConfigurable : Configurable {
     // A default constructor with no arguments is required because this implementation
     // is registered as an applicationConfigurable EP
     override fun getDisplayName(): @Nls(capitalization = Nls.Capitalization.Title) String? {
-        return "Atta Style"
+        return "Moon Style"
     }
 
     override fun getPreferredFocusedComponent(): JComponent {
@@ -27,23 +27,23 @@ class AppSettingsConfigurable : Configurable {
     }
 
     override fun isModified(): Boolean {
-        val settings: AttaSettingConfig = ConfigUtil.get()
-        val modified: AttaSettingConfig? = mySettingsComponent?.attaSettingConfig
+        val settings: MoonSettingConfig = ConfigUtil.get()
+        val modified: MoonSettingConfig? = mySettingsComponent?.moonSettingConfig
 
         return modified != settings
     }
 
     override fun apply() {
-        val settings: AttaSettingConfig = ConfigUtil.get()
-        val modified: AttaSettingConfig? = mySettingsComponent?.attaSettingConfig
+        val settings: MoonSettingConfig = ConfigUtil.get()
+        val modified: MoonSettingConfig? = mySettingsComponent?.moonSettingConfig
         if (modified != null) {
             XmlSerializerUtil.copyBean(modified, settings)
         }
     }
 
     override fun reset() {
-        val settings: AttaSettingConfig = ConfigUtil.get()
-        mySettingsComponent?.attaSettingConfig = settings
+        val settings: MoonSettingConfig = ConfigUtil.get()
+        mySettingsComponent?.moonSettingConfig = settings
     }
 
     override fun disposeUIResources() {

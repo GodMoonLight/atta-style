@@ -4,7 +4,7 @@ import com.github.godmoonlight.moonstyle.services.MyApplicationService
 
 object ConfigUtil {
 
-    fun get(): AttaSettingConfig {
+    fun get(): MoonSettingConfig {
         return MyApplicationService.getInstance().config
     }
 }

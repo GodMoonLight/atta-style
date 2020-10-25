@@ -31,7 +31,7 @@ class KV<K, V> : LinkedHashMap<K, V>() {
 
     companion object {
         fun <K, V> create(): KV<K, V> {
-            return KV<K, V>()
+            return KV()
         }
     }
 }

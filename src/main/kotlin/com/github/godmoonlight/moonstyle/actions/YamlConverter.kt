@@ -1,5 +1,9 @@
 package com.github.godmoonlight.moonstyle.actions
 
+import com.github.godmoonlight.moonstyle.settings.ConfigUtil
+import com.github.godmoonlight.moonstyle.settings.ToJsonConfig
+import com.github.godmoonlight.moonstyle.settings.ToYamlConfig
+import com.github.godmoonlight.moonstyle.utils.ProjectUtil
 import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationGroup
 import com.intellij.notification.NotificationType
@@ -7,9 +11,9 @@ import com.intellij.notification.Notifications
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.editor.Editor
+import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.util.PsiTreeUtil
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 
@@ -24,14 +28,15 @@ class YamlConverter : AnAction() {
     }
 
     override fun actionPerformed(e: AnActionEvent) {
-        val editor = e.dataContext.getData(CommonDataKeys.EDITOR)
-        val project = editor!!.project
-        val referenceAt =
-            e.dataContext.getData(CommonDataKeys.PSI_FILE)!!.findElementAt(editor.caretModel.offset)
+        val editor: Editor = e.dataContext.getData(CommonDataKeys.EDITOR)!!
+        val project: Project = editor.project!!
 
-        val selectedClass: PsiClass =
-            PsiTreeUtil.getContextOfType<PsiElement>(referenceAt, PsiClass::class.java) as PsiClass
-        val kv: KV<String, Any> = FieldResolver().getFields(selectedClass)
+        val selectedClass: PsiClass = ProjectUtil.getPsiClassFromContext(e)!!
+        val toJson: ToYamlConfig = ConfigUtil.get().toYamlConfig
+
+        val kv: KV<String, Any> =
+            FieldResolver(false, toJson.randomValue, toJson.enumValues)
+                .getFields(selectedClass)
         val json: String = kv.toYaml(selectedClass.qualifiedName)
         val selection = StringSelection(json)
         val clipboard = Toolkit.getDefaultToolkit().systemClipboard
