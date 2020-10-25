@@ -94,7 +94,6 @@ class FieldResolver(
             }
             else -> ""
         }
-
     }
 
     private fun processList(type: @NotNull PsiType): ArrayList<Any> {
