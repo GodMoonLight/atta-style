@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>com.github.godmoonlight.attastyle</id>
-    <name>atta-style</name>
+    <id>com.github.godmoonlight.moonstyle</id>
+    <name>moon-style</name>
     <vendor>godmoonlight</vendor>
 
     <!-- Product and plugin compatibility requirements -->
@@ -8,12 +8,35 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.godmoonlight.attastyle.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.godmoonlight.attastyle.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.godmoonlight.moonstyle.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.github.godmoonlight.moonstyle.services.MyProjectService"/>
+        <applicationConfigurable
+          id="moonStyleSetting"
+          bundle="messages.MyBundle"
+          parentId="tools"
+          instance="com.github.godmoonlight.moonstyle.settings.AppSettingsConfigurable"
+          displayName="Moon Style"/>
     </extensions>
 
     <projectListeners>
-        <listener class="com.github.godmoonlight.attastyle.listeners.MyProjectManagerListener"
+        <listener class="com.github.godmoonlight.moonstyle.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </projectListeners>
+    <actions>
+        <action id="BeanConverter" class="com.github.godmoonlight.moonstyle.actions.BeanConverter"
+          text="Converter Method"
+          description="Generates method for converting the instance of one class to another">
+            <add-to-group group-id="JavaGenerateGroup1" anchor="first"/>
+        </action>
+
+        <action id="JsonConverter" class="com.github.godmoonlight.moonstyle.actions.JsonConverter" text="ToJson"
+          description="Java bean convert to json">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+        <action id="YamlConverter" class="com.github.godmoonlight.moonstyle.actions.YamlConverter" text="ToYaml"
+          description="Java bean convert to json">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>

@@ -1,1 +1,1 @@
-rootProject.name = "atta-style"
+rootProject.name = "moon-style"
