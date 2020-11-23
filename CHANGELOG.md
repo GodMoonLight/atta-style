@@ -2,6 +2,18 @@
 
 # moon-style Changelog
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.0.1]
 
 ## [1.0.0] - 2020-10-20
 ### Added
