@@ -2,6 +2,21 @@
 
 # moon-style Changelog
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.0.1] - 2020-11-20
+### Changed
+-  add new plugin icon
 
 ## [1.0.0] - 2020-10-20
 ### Added
